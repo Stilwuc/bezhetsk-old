@@ -1,15 +1,12 @@
-// Начальные координаты (подобраны приблизительно под регион из вашего примера)
-// Вам может потребоваться уточнить center и zoom, чтобы увидеть данные сразу.
-const startCenter = [36.692273, 57.781653]; // Пример: Москва (измените при необходимости)
+const startCenter = [36.692273, 57.781653];
 const startZoom = 15;
 
 // URL для Первой карты (NGW)
 const source1Url = 'https://ngw.fppd.cgkipd.ru/tile/39/{z}/{x}/{y}.png';
 
 // URL для Второй карты (GeoServer WMTS)
-// Заменяем фиксированные значения на {z}, {x}, {y} для динамической подгрузки
-const source2Url = 'http://localhost:8080/geoserver/site/gwc/service/wmts?layer=site:GX1135_SG_frame_15_18_2&style=&tilematrixset=EPSG:900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image/png&TileMatrix=EPSG:900913:{z}&TileCol={x}&TileRow={y}';
-
+const source2Url = 'http://84.201.171.76:8081/geoserver/invest_portal/gwc/service/wmts?layer=invest_portal%3AGX1135_SG&style=&tilematrixset=EPSG:900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image/png&TileMatrix=EPSG:900913:{z}&TileCol={x}&TileRow={y}';
+                    
 // Настройка карты "ДО" (Левая сторона)
 const beforeMap = new maplibregl.Map({
     container: 'before',
