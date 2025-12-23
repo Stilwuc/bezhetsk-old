@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сравнение карт MapLibre</title>
+    
+    <!-- Стили MapLibre GL -->
+    <link href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" rel="stylesheet" />
+    <!-- Стили MapLibre GL Compare -->
+    <link href="https://unpkg.com/@maplibre/maplibre-gl-compare@0.5.0/dist/maplibre-gl-compare.css" rel="stylesheet" />
+    <!-- Наш CSS файл -->
+    <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+
+    <!-- Контейнер для сравнения -->
+    <div id="comparison-container">
+        <div id="before" class="map"></div>
+        <div id="after" class="map"></div>
+    </div>
+
+    <!-- Скрипты -->
+    <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
+    <script src="https://unpkg.com/@maplibre/maplibre-gl-compare@0.5.0/dist/maplibre-gl-compare.js"></script>
+    <!-- Наш JS файл -->
+    <script src="script.js"></script>
+</body>
+</html>
