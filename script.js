@@ -36,7 +36,7 @@ const beforeMap = new maplibregl.Map({
 
 // --- СЛОЙ 2 (СПРАВА / AFTER) ---
 // GeoServer (или прокси)
-const source2Url = 'https://geoserver.maindp.ru/geoserver/invest_portal/gwc/service/wmts?layer=invest_portal%3AGX1135_SG&style=&tilematrixset=EPSG:900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image/png&TileMatrix=EPSG:900913:{z}&TileCol={x}&TileRow={y}'; // Вставьте вашу ссылку
+const source2Url = 'https://bezhetsk.maindp.ru/geoserver/invest_portal/gwc/service/wmts?layer=invest_portal%3AGX1135_SG&style=&tilematrixset=EPSG:900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image/png&TileMatrix=EPSG:900913:{z}&TileCol={x}&TileRow={y}'; // Вставьте вашу ссылку
 
 const afterMap = new maplibregl.Map({
     container: 'after',
