@@ -4,7 +4,8 @@ const startZoom = 14;
 
 // --- СЛОЙ 1 (СЛЕВА / BEFORE) ---
 // Тот самый NGW слой (ЦОФП ЕЭКО)
-const source1Url = 'https://ngw.fppd.cgkipd.ru/tile/39/{z}/{x}/{y}.png';
+const source1Url = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+const source3Url = 'https://ngw.fppd.cgkipd.ru/tile/39/{z}/{x}/{y}.png';
 
 const beforeMap = new maplibregl.Map({
     container: 'before',
@@ -16,6 +17,13 @@ const beforeMap = new maplibregl.Map({
                 tiles: [source1Url],
                 tileSize: 256,
                 // ВАЖНО: Атрибуция для конкретного слоя
+                attribution: '© ESRI World Imagery'
+            },
+            'raster-source-3': {
+                type: 'raster',
+                tiles: [source3Url],
+                tileSize: 256,
+                // ВАЖНО: Атрибуция для конкретного слоя
                 attribution: '© ЦОФП ЕЭКО Роскадастр'
             }
         },
@@ -24,6 +32,12 @@ const beforeMap = new maplibregl.Map({
                 id: 'raster-layer-1',
                 type: 'raster',
                 source: 'raster-source-1',
+                paint: {}
+            },
+            {
+                id: 'raster-layer-3',
+                type: 'raster',
+                source: 'raster-source-3',
                 paint: {}
             }
         ]
@@ -47,8 +61,7 @@ const afterMap = new maplibregl.Map({
                 type: 'raster',
                 tiles: [source2Url],
                 tileSize: 256,
-                // Атрибуция для второго слоя (опционально)
-                attribution: 'Аэрофотоснимок 1944 г.'
+
             }
         },
         layers: [
@@ -63,7 +76,7 @@ const afterMap = new maplibregl.Map({
     center: startCenter,
     zoom: startZoom,
     // Чтобы не дублировать "MapLibre" дважды, здесь можно оставить пустым или продублировать
-    customAttribution: '<a href="https://maplibre.org/" target="_blank">MapLibre</a>'
+    customAttribution: '© ESRI World Imagery | © ЦОФП ЕЭКО Роскадастр | <a href="https://maplibre.org/" target="_blank">MapLibre</a>'
 });
 
 // Запуск сравнения
