@@ -1,13 +1,11 @@
-const startCenter = [36.692273, 57.781653];
-const startZoom = 15;
+// Координаты (Бежецк)
+const startCenter = [36.695, 57.785]; 
+const startZoom = 14;
 
-// URL для Первой карты (NGW)
+// --- СЛОЙ 1 (СЛЕВА / BEFORE) ---
+// Тот самый NGW слой (ЦОФП ЕЭКО)
 const source1Url = 'https://ngw.fppd.cgkipd.ru/tile/39/{z}/{x}/{y}.png';
 
-// URL для Второй карты (GeoServer WMTS)
-const source2Url = 'http://84.201.171.76:8081/geoserver/invest_portal/gwc/service/wmts?layer=invest_portal%3AGX1135_SG&style=&tilematrixset=EPSG:900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image/png&TileMatrix=EPSG:900913:{z}&TileCol={x}&TileRow={y}';
-                    
-// Настройка карты "ДО" (Левая сторона)
 const beforeMap = new maplibregl.Map({
     container: 'before',
     style: {
@@ -16,7 +14,9 @@ const beforeMap = new maplibregl.Map({
             'raster-source-1': {
                 type: 'raster',
                 tiles: [source1Url],
-                tileSize: 256
+                tileSize: 256,
+                // ВАЖНО: Атрибуция для конкретного слоя
+                attribution: '© ЦОФП ЕЭКО Роскадастр'
             }
         },
         layers: [
@@ -29,10 +29,15 @@ const beforeMap = new maplibregl.Map({
         ]
     },
     center: startCenter,
-    zoom: startZoom
+    zoom: startZoom,
+    // Добавляем общую атрибуцию MapLibre (хотя библиотека обычно добавляет логотип, текст надежнее)
+    customAttribution: '<a href="https://maplibre.org/" target="_blank">MapLibre</a>'
 });
 
-// Настройка карты "ПОСЛЕ" (Правая сторона)
+// --- СЛОЙ 2 (СПРАВА / AFTER) ---
+// GeoServer (или прокси)
+const source2Url = 'https://geoserver.maindp.ru/geoserver/invest_portal/gwc/service/wmts?layer=invest_portal%3AGX1135_SG&style=&tilematrixset=EPSG:900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image/png&TileMatrix=EPSG:900913:{z}&TileCol={x}&TileRow={y}'; // Вставьте вашу ссылку
+
 const afterMap = new maplibregl.Map({
     container: 'after',
     style: {
@@ -41,7 +46,9 @@ const afterMap = new maplibregl.Map({
             'raster-source-2': {
                 type: 'raster',
                 tiles: [source2Url],
-                tileSize: 256
+                tileSize: 256,
+                // Атрибуция для второго слоя (опционально)
+                attribution: 'Аэрофотоснимок 1944 г.'
             }
         },
         layers: [
@@ -54,12 +61,11 @@ const afterMap = new maplibregl.Map({
         ]
     },
     center: startCenter,
-    zoom: startZoom
+    zoom: startZoom,
+    // Чтобы не дублировать "MapLibre" дважды, здесь можно оставить пустым или продублировать
+    customAttribution: '<a href="https://maplibre.org/" target="_blank">MapLibre</a>'
 });
 
-// Инициализация плагина сравнения
+// Запуск сравнения
 const container = '#comparison-container';
-const map = new maplibregl.Compare(beforeMap, afterMap, container, {
-    // Опции (можно оставить пустым)
-    // mousemove: true // Если нужно перемещение слайдера при движении мыши
-});
+const map = new maplibregl.Compare(beforeMap, afterMap, container, {});

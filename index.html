@@ -2,45 +2,70 @@
 <html lang="ru">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Сравнение снимка Бежецка</title>
-  <!-- Yandex.Metrika counter -->
-  <script type="text/javascript">
-    (function (m, e, t, r, i, k, a) {
-      m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
-      m[i].l = 1 * new Date();
-      for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
-      k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-    })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=105985499', 'ym');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Старый снимок Бежецка</title>
+    <meta name="description" content="Интерактивная карта для сравнения современного спутникового снимка города Бежецка Тверской области с архивным аэрофотоснимком времен ВОВ.">
+    <meta name="keywords" content="Бежецк, карта, спутниковые снимки, сравнение карт, Роскадастр, ЦОФП ЕЭКО, MapLibre, аэрофотоснимок">
+    <meta name="author" content="Павел Лебедев, Даниил Смирнов">
+    <meta name="robots" content="index, follow">
 
-    ym(105985499, 'init', { ssr: true, webvisor: true, clickmap: true, ecommerce: "dataLayer", accurateTrackBounce: true, trackLinks: true });
-  </script>
-  <noscript>
-    <div><img src="https://mc.yandex.ru/watch/105985499" style="position:absolute; left:-9999px;" alt="" /></div>
-  </noscript>
-  <!-- /Yandex.Metrika counter -->
-  <!-- Стили MapLibre GL -->
-  <link href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" rel="stylesheet" />
-  <!-- Стили MapLibre GL Compare -->
-  <link href="https://unpkg.com/@maplibre/maplibre-gl-compare@0.5.0/dist/maplibre-gl-compare.css" rel="stylesheet" />
-  <!-- Наш CSS файл -->
-  <link href="style.css" rel="stylesheet" />
+    <!-- Open Graph (для красивого отображения ссылки в Telegram/VK) -->
+    <meta property="og:title" content="Сравнение снимков Бежецка">
+    <meta property="og:description" content="Инструмент сравнения данных ЦОФП ЕЭКО Роскадастр и архивной съемки времен ВОВ.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ru_RU">
+    <!-- <meta property="og:image" content="ссылка_на_превью.jpg"> -->
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () { (m[i].a = m[i].a || []).push(arguments) };
+            m[i].l = 1 * new Date();
+            for (var j = 0; j < document.scripts.length; j++) { if (document.scripts[j].src === r) { return; } }
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+        })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=105985499', 'ym');
+
+        ym(105985499, 'init', { ssr: true, webvisor: true, clickmap: true, ecommerce: "dataLayer", accurateTrackBounce: true, trackLinks: true });
+    </script>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/105985499" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
+
+    <!-- Стили MapLibre GL -->
+    <link href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" rel="stylesheet" />
+    <!-- Стили MapLibre GL Compare -->
+    <link href="https://unpkg.com/@maplibre/maplibre-gl-compare@0.5.0/dist/maplibre-gl-compare.css" rel="stylesheet" />
+    <!-- Наш CSS файл -->
+    <link href="style.css" rel="stylesheet" />
+        <style>
+        .maplibregl-ctrl-group button {
+            width: 30px;
+            height: 30px;
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Скрытый заголовок для SEO -->
+    <h1 style="display: none;">Сравнение картографических слоев Бежецка</h1>
 
-  <!-- Контейнер для сравнения -->
-  <div id="comparison-container">
-    <div id="before" class="map"></div>
-    <div id="after" class="map"></div>
-  </div>
+    <!-- Контейнер -->
+    <div id="comparison-container">
+        <div id="before" class="map"></div>
+        <div id="after" class="map"></div>
+    </div>
 
-  <!-- Скрипты -->
-  <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
-  <script src="https://unpkg.com/@maplibre/maplibre-gl-compare@0.5.0/dist/maplibre-gl-compare.js"></script>
-  <!-- Наш JS файл -->
-  <script src="script.js"></script>
+    <!-- Библиотеки -->
+    <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
+    <script src="https://unpkg.com/@maplibre/maplibre-gl-compare@0.5.0/dist/maplibre-gl-compare.js"></script>
+    <script src="https://unpkg.com/map-gl-style-switcher/map-gl-style-switcher.js"></script>
+    
+    <!-- Логика -->
+    <script src="script.js"></script>
 </body>
 
 </html>
