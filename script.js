@@ -1,11 +1,9 @@
-// Координаты (Бежецк)
 const startCenter = [36.695, 57.785]; 
 const startZoom = 14;
 
 // --- СЛОЙ 1 (СЛЕВА / BEFORE) ---
-// Тот самый NGW слой (ЦОФП ЕЭКО)
 const source1Url = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
-const source3Url = 'https://ngw.fppd.cgkipd.ru/tile/39/{z}/{x}/{y}.png';
+const source3Url = 'https://bezhetsk.maindp.ru/geoserver/geoserver/invest_portal/gwc/service/wmts?layer=invest_portal%3Abezhetsk_new_clip&style=&tilematrixset=EPSG:900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image/png&TileMatrix=EPSG:900913:{z}&TileCol={x}&TileRow={y}';
 
 const beforeMap = new maplibregl.Map({
     container: 'before',
@@ -44,13 +42,11 @@ const beforeMap = new maplibregl.Map({
     },
     center: startCenter,
     zoom: startZoom,
-    // Добавляем общую атрибуцию MapLibre (хотя библиотека обычно добавляет логотип, текст надежнее)
     customAttribution: '<a href="https://maplibre.org/" target="_blank">MapLibre</a>'
 });
 
 // --- СЛОЙ 2 (СПРАВА / AFTER) ---
-// GeoServer (или прокси)
-const source2Url = 'https://bezhetsk.maindp.ru/geoserver/geoserver/invest_portal/gwc/service/wmts?layer=invest_portal%3AGX1135_SG&style=&tilematrixset=EPSG:900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image/png&TileMatrix=EPSG:900913:{z}&TileCol={x}&TileRow={y}'; // Вставьте вашу ссылку
+const source2Url = 'https://bezhetsk.maindp.ru/geoserver/geoserver/invest_portal/gwc/service/wmts?layer=invest_portal%3AGX1135_SG&style=&tilematrixset=EPSG:900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image/png&TileMatrix=EPSG:900913:{z}&TileCol={x}&TileRow={y}';
 
 const afterMap = new maplibregl.Map({
     container: 'after',
@@ -75,7 +71,6 @@ const afterMap = new maplibregl.Map({
     },
     center: startCenter,
     zoom: startZoom,
-    // Чтобы не дублировать "MapLibre" дважды, здесь можно оставить пустым или продублировать
     customAttribution: '© ESRI World Imagery | © ЦОФП ЕЭКО Роскадастр | <a href="https://maplibre.org/" target="_blank">MapLibre</a>'
 });
 
