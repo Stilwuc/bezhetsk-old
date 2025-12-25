@@ -37,8 +37,16 @@ const beforeMap = new maplibregl.Map({
         ]
     },
     center: startCenter,
-    zoom: startZoom
+    zoom: startZoom,
+    attributionControl: false // Отключаем дефолтный
 });
+
+beforeMap.addControl(new maplibregl.AttributionControl({
+    customAttribution: '<a href="https://www.esri.com/ru-ru/arcgis/products/data-location-services/data/basemaps-imagery" target="_blank">© ESRI</a> | <a href="https://portal.fppd.cgkipd.ru/main" target="_blank">© Роскадастр</a> | <a href="https://maplibre.org/" target="_blank">MapLibre</a>',
+    compact: true // <--- Всегда показывать как кнопку "i"
+}), 'bottom-right');
+
+
 
 // --- СЛОЙ 2 (СПРАВА / AFTER) ---
 const source2Url = 'https://bezhetsk.maindp.ru/geoserver/geoserver/invest_portal/gwc/service/wmts?layer=invest_portal%3AGX1135_SG&style=&tilematrixset=EPSG:900913&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image/png&TileMatrix=EPSG:900913:{z}&TileCol={x}&TileRow={y}';
@@ -66,10 +74,14 @@ const afterMap = new maplibregl.Map({
     },
     center: startCenter,
     zoom: startZoom,
-    customAttribution: '© ESRI World Imagery | © ЦОФП ЕЭКО Роскадастр | <a href="https://maplibre.org/" target="_blank">MapLibre</a>'
+    attributionControl: false // Отключаем дефолтный
 });
+
+afterMap.addControl(new maplibregl.AttributionControl({
+    customAttribution: '<a href="https://www.esri.com/ru-ru/arcgis/products/data-location-services/data/basemaps-imagery" target="_blank">© ESRI</a> | <a href="https://portal.fppd.cgkipd.ru/main" target="_blank">© Роскадастр</a> | <a href="https://maplibre.org/" target="_blank">MapLibre</a>',
+    compact: true // <--- Всегда показывать как кнопку "i"
+}), 'bottom-right');
 
 // Запуск сравнения
 const container = '#comparison-container';
 const map = new maplibregl.Compare(beforeMap, afterMap, container, {});
-
