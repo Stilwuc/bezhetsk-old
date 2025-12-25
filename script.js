@@ -13,16 +13,12 @@ const beforeMap = new maplibregl.Map({
             'raster-source-1': {
                 type: 'raster',
                 tiles: [source1Url],
-                tileSize: 256,
-                // ВАЖНО: Атрибуция для конкретного слоя
-                attribution: '© ESRI World Imagery'
+                tileSize: 256
             },
             'raster-source-3': {
                 type: 'raster',
                 tiles: [source3Url],
-                tileSize: 256,
-                // ВАЖНО: Атрибуция для конкретного слоя
-                attribution: '© ЦОФП ЕЭКО Роскадастр'
+                tileSize: 256
             }
         },
         layers: [
@@ -41,8 +37,7 @@ const beforeMap = new maplibregl.Map({
         ]
     },
     center: startCenter,
-    zoom: startZoom,
-    customAttribution: '<a href="https://maplibre.org/" target="_blank">MapLibre</a>'
+    zoom: startZoom
 });
 
 // --- СЛОЙ 2 (СПРАВА / AFTER) ---
@@ -77,3 +72,4 @@ const afterMap = new maplibregl.Map({
 // Запуск сравнения
 const container = '#comparison-container';
 const map = new maplibregl.Compare(beforeMap, afterMap, container, {});
+
