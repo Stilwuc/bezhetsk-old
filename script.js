@@ -1,24 +1,6 @@
 let startCenter = [36.695, 57.785]; 
 let startZoom = 14;
 
-// --- ЛОГИКА ЧТЕНИЯ ССЫЛКИ ---
-const hash = window.location.hash;
-if (hash) {
-    // Разбиваем строку #zoom/lat/lng
-    const parts = hash.substring(1).split('/');
-    if (parts.length >= 3) {
-        const z = parseFloat(parts[0]);
-        const lat = parseFloat(parts[1]);
-        const lng = parseFloat(parts[2]);
-
-        // Теперь это сработает, так как переменные объявлены через let
-        if (!isNaN(z) && !isNaN(lat) && !isNaN(lng)) {
-            startZoom = z;
-            startCenter = [lng, lat]; // MapLibre требует порядок [lng, lat]
-        }
-    }
-}
-
 // Ссылка на шрифты
 const glyphsUrl = 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf';
 
@@ -149,24 +131,3 @@ afterMap.addControl(new maplibregl.AttributionControl({
 // Запуск сравнения
 const container = '#comparison-container';
 const map = new maplibregl.Compare(beforeMap, afterMap, container, {});
-
-
-// --- ЛОГИКА ОБНОВЛЕНИЯ ССЫЛКИ ---
-// Слушаем событие 'moveend' только на одной карте (так как они синхронизированы)
-beforeMap.on('moveend', updateUrl);
-
-function updateUrl() {
-    const center = beforeMap.getCenter();
-    const zoom = beforeMap.getZoom();
-    
-    // Округляем до 5 знаков (точность ~1 метр), чтобы ссылка не была километровой
-    const lat = center.lat.toFixed(5);
-    const lng = center.lng.toFixed(5);
-    const z = zoom.toFixed(2);
-
-    // Формируем хеш: #zoom/lat/lng
-    const newHash = `#${z}/${lat}/${lng}`;
-
-    // Обновляем URL без перезагрузки страницы
-    window.history.replaceState(null, null, newHash);
-}
