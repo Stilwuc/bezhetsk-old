@@ -1,5 +1,5 @@
-let startCenter = [36.695, 57.785]; 
-let startZoom = 14;
+const startCenter = [36.695, 57.785]; 
+const startZoom = 14;
 
 // Ссылка на шрифты
 const glyphsUrl = 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf';
